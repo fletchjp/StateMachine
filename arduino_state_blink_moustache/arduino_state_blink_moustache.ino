@@ -7,11 +7,28 @@
  */
 
 #include <StateMachine.h>
+#include <moustache.h>
+
+// This returns the size of a moustache_variable_t array and also of an array of arrays.
+// It can be used to control output from rendering the array of arrays
+template <typename T, size_t n>
+size_t moustache_size(T (&values)[n])
+{
+  return n;
+}
 
 const int STATE_DELAY = 1000;
 const int LED = 13;
 
 StateMachine machine = StateMachine();
+// Define the format to be used to output a state.
+const char *current_state = "Current state is {{state}}";
+// Definitions for each state.
+const moustache_variable_t state0[] = { {"state", "0, reset"} };
+const moustache_variable_t state1[] = { {"state", "1, blink"} };
+const moustache_variable_t state2[] = { {"state", "2, wait"} };
+// Array of states (optional)  
+const moustache_variable_t *states_array[]= { state0, state1, state2 };
 
 /***********************************************************
  * What do we mean by state?
@@ -36,7 +53,9 @@ uint32_t timeLastTransition = 0;
 // Reset and wait
 State* S0 = machine.addState([]() {
   if(machine.executeOnce){
-    Serial.println("State 0, reset");
+    //Serial.println("State 0, reset");
+    const moustache_variable_t what[] =  { *states_array[0] };    
+    Serial.println(moustache_render(current_state,what));
     digitalWrite(LED,LOW);
     Blink_State = RESET;
     Led_State = LED_off;
@@ -48,7 +67,9 @@ State* S0 = machine.addState([]() {
 State* S1 = machine.addState([]() {
     if(machine.executeOnce){
       Blink_State = BLINK;
-      Serial.println("State 1, blink");
+      //Serial.println("State 1, blink");
+      const moustache_variable_t what[] =  { *states_array[1] };    
+      Serial.println(moustache_render(current_state,what));
       digitalWrite(LED, !digitalRead(LED));
     }
 });
@@ -57,7 +78,9 @@ State* S1 = machine.addState([]() {
 State* S2 = machine.addState([]() {
     if(machine.executeOnce){
       Blink_State = WAIT;
-      Serial.println("State 2, wait");
+      //Serial.println("State 2, wait");
+      const moustache_variable_t what[] =  { *states_array[2] };    
+      Serial.println(moustache_render(current_state,what));
       timeLastTransition = millis();
     }
 });

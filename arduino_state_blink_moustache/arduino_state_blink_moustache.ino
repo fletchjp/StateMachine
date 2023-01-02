@@ -68,7 +68,8 @@ State* S1 = machine.addState([]() {
     if(machine.executeOnce){
       Blink_State = BLINK;
       //Serial.println("State 1, blink");
-      const moustache_variable_t what[] =  { *states_array[1] };    
+      size_t i = 1;
+      const moustache_variable_t what[] =  { *states_array[i] };    
       Serial.println(moustache_render(current_state,what));
       digitalWrite(LED, !digitalRead(LED));
     }

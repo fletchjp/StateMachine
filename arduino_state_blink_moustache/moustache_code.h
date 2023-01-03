@@ -1,6 +1,9 @@
 // moustache_code.h
 // Extra codes for moustache.
 
+#ifndef MOUSTACHE_CODE_H
+#define MOUSTACHE_CODE_H
+
 // This returns the size of a moustache_variable_t array and also of an array of arrays.
 // It can be used to control output from rendering the array of arrays
 template <typename T, size_t n>
@@ -29,4 +32,5 @@ String moustache_render_value(const String &format, T (&values)[n], size_t i, co
 }
 
 
+#endif
 

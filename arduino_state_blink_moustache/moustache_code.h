@@ -56,5 +56,17 @@ String moustache_render_array(const String &format, T (&values)[n], size_t i)
     }
     return s;
 }
+
+// This works on an array of values with the same keyword and also changes a value in the chosen output
+template <typename T, typename V, size_t n>
+String moustache_render_array_value(const String &format, T (&values)[n], size_t i, size_t j, const V &v)
+{
+    String s;
+    if (i < n) {
+      const moustache_variable_t what[] =  { *values[i] };    
+      s = moustache_render_value(format,what,j,v);
+    }
+    return s;
+}
 #endif
 

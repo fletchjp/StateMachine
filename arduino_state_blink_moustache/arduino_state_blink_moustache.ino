@@ -23,7 +23,8 @@ const int STATE_DELAY = 1000;
 const int LED = 13;
 
 StateMachine machine = StateMachine();
-// Define the format to be used to output a state.
+// Define the formats to be used to output a state.
+const char *available_state = "State {{state}} is available";
 const char *current_state = "Current state is {{state}}";
 // Definitions for each state.
 const moustache_variable_t state0[] = { {"state", "0, reset"} };
@@ -124,7 +125,7 @@ void setup() {
   Serial.println("List of available states");
   for (size_t i = 0; i < n; i++ ) {
     const moustache_variable_t what[] =  { *states_array[i] };
-    Serial.println(moustache_render(current_state,what)); 
+    Serial.println(moustache_render(available_state,what)); 
   }
   Serial.println("Start state machine");
   // Add transition from S0 to S1

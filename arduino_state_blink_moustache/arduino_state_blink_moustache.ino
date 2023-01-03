@@ -26,12 +26,18 @@ StateMachine machine = StateMachine();
 // Define the formats to be used to output a state.
 const char *available_state = "State {{state}} is available";
 const char *current_state = "Current state is {{state}}";
+const char *position = "moveServo reaches {{pos}}";
+
 // Definitions for each state.
 const moustache_variable_t state0[] = { {"state", "0, reset"} };
 const moustache_variable_t state1[] = { {"state", "1, blink"} };
 const moustache_variable_t state2[] = { {"state", "2, wait"} };
 // Array of states (optional)  
 const moustache_variable_t *states_array[]= { state0, state1, state2 };
+
+int pos = 0;    // variable to store the servo position
+
+const moustache_variable_t position_value[] = { { "pos", String(pos) } };
 
 /***********************************************************
  * What do we mean by state?
@@ -134,6 +140,10 @@ void setup() {
   S1->addTransition(&transitionS1S2,S2);
   S2->addTransition(&transitionS2S1,S1);
 
+  Serial.println(moustache_render(position,position_value));
+  // This does not change the output - variables not available.
+  pos = 2;
+  Serial.println(moustache_render(position,position_value));
 
 }
 

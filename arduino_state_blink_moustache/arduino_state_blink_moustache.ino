@@ -15,7 +15,7 @@
 #include "moustache_code.h"
 
 
-const int STATE_DELAY = 1000;  
+const int STATE_DELAY = 1000;
 const int LED = 13;
 
 StateMachine machine = StateMachine();
@@ -131,6 +131,8 @@ void setup() {
     const moustache_variable_t what[] =  { *states_array[i] };
     Serial.println(moustache_render(available_state,what)); 
   }
+  Serial.println("Demo of range error");
+  Serial.println(moustache_render_array(current_state,states_array,3));
   Serial.println("Start state machine");
   // Add transition from S0 to S1
   S0->addTransition(&transitionS0S1,S1);
@@ -161,6 +163,7 @@ void setup() {
   Serial.println(moustache_render(point,point_value));
  
   Serial.println(moustache_render_value2(point,point_value,0,x,1,y));
+
  }
 
 void loop() {

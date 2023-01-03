@@ -6,6 +6,10 @@
 #ifndef MOUSTACHE_CODE_H
 #define MOUSTACHE_CODE_H
 
+const char *moustache_error = "** moustache error : {{error}} {{i}} **";
+size_t moustache_i = 0;
+const moustache_variable_t array_error[] = { { "error", "array range error, i ="}, { "i", String(moustache_i)} };
+
 // This returns the size of a moustache_variable_t array and also of an array of arrays.
 // It can be used to control output from rendering the array of arrays
 template <typename T, size_t n>
@@ -53,6 +57,9 @@ String moustache_render_array(const String &format, T (&values)[n], size_t i)
     if (i < n) {
       const moustache_variable_t what[] =  { *values[i] };    
       s = moustache_render(format,what);
+    } else {
+      moustache_value(array_error,1,i);     
+      s = moustache_render(moustache_error,array_error);
     }
     return s;
 }
@@ -65,6 +72,9 @@ String moustache_render_array_value(const String &format, T (&values)[n], size_t
     if (i < n) {
       const moustache_variable_t what[] =  { *values[i] };    
       s = moustache_render_value(format,what,j,v);
+    }  else {
+      moustache_value(array_error,1,i);     
+      s = moustache_render(moustache_error,array_error);
     }
     return s; 
 }

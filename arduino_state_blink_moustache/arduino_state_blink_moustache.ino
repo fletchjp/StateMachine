@@ -11,30 +11,7 @@
 #include <StateMachine.h>
 #include <moustache.h>
 
-// This returns the size of a moustache_variable_t array and also of an array of arrays.
-// It can be used to control output from rendering the array of arrays
-template <typename T, size_t n>
-size_t moustache_size(T (&values)[n])
-{
-  return n;
-}
-
-template <typename T, typename V, size_t n>
-void moustache_value(T (&values)[n], size_t i, const V &v)
-{
-  if (i < n) values[i].value = String(v);
-  //return n;
-}
-
-// This will not compile with format as the first argument - why is not clear to me.
-template <typename T, typename V, size_t n>
-String moustache_render_value( T (&values)[n], size_t i, const V &v ,const String &format)
-{
-    if (i < n) values[i].value = String(v);
-    //moustache_value(values,i,v);
-    String s =  moustache_render(format,values);
-    return s;
-}
+#include "moustache_code.h"
 
 
 const int STATE_DELAY = 1000;
@@ -168,7 +145,7 @@ void setup() {
   Serial.println(moustache_render(position,position_value));
   pos = 4;
   // For some reason this will not compile with the format as the first argument.
-  Serial.println(moustache_render_value(position_value,0,pos,position));
+  Serial.println(moustache_render_value(position,position_value,0,pos));
 
   Serial.println(moustache_render(point,point_value));
   x = 3;

@@ -1,5 +1,7 @@
 // arduino_state_blink with moustache output
 // Simple example using the StateMachine library.
+// This also shows how the moustache library can be used.
+// moutache_size is something I have invented.
 
 /*
  * Converting example from 

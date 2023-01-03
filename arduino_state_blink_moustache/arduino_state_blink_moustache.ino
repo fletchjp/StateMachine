@@ -141,8 +141,9 @@ void setup() {
   S2->addTransition(&transitionS2S1,S1);
 
   Serial.println(moustache_render(position,position_value));
-  // This does not change the output - variables not available.
+  // This does now change the output.
   pos = 2;
+  position_value[0].value = String(pos);
   Serial.println(moustache_render(position,position_value));
 
 }

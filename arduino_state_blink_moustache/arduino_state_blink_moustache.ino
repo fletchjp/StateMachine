@@ -118,7 +118,13 @@ void setup() {
   while(!Serial) { }
   pinMode(LED,OUTPUT);
   Serial.println("Arduino state blink");
-  
+  size_t n = moustache_size(states_array);
+  Serial.println("List of available states");
+  for (size_t i = 0; i < n; i++ ) {
+    const moustache_variable_t what[] =  { *states_array[i] };
+    Serial.println(moustache_render(current_state,what)); 
+  }
+  Serial.println("Start state machine");
   // Add transition from S0 to S1
   S0->addTransition(&transitionS0S1,S1);
   // Add transitions from S1 to S2 and back again.

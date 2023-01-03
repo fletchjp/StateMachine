@@ -66,7 +66,7 @@ String moustache_render_array_value(const String &format, T (&values)[n], size_t
       const moustache_variable_t what[] =  { *values[i] };    
       s = moustache_render_value(format,what,j,v);
     }
-    return s;
+    return s; 
 }
 #endif
 

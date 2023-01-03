@@ -1,5 +1,7 @@
 // moustache_code.h
 // Extra codes for moustache.
+// These extend what can be done with Arduino moustache within the limitations of the Arduino compiler.
+// Some of these functions will not compile in an *.ino file for some reason.
 
 #ifndef MOUSTACHE_CODE_H
 #define MOUSTACHE_CODE_H
@@ -32,7 +34,7 @@ String moustache_render_value(const String &format, T (&values)[n], size_t i, co
     return s;
 }
 
-// This will change two values and render the file in one go.
+// This will change two values and render the file in one go. The variable types need not be the same.
 template <typename T, typename V, typename W, size_t n>
 String moustache_render_value2(const String &format, T (&values)[n], size_t i, const V &v, size_t j, const W &w )
 {

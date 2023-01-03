@@ -45,6 +45,7 @@ String moustache_render_value2(const String &format, T (&values)[n], size_t i, c
     return s;
 }
 
+// This works on an array of values with the same keyword.
 template <typename T, size_t n>
 String moustache_render_array(const String &format, T (&values)[n], size_t i)
 {

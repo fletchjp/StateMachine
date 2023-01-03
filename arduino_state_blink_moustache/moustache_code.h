@@ -45,6 +45,15 @@ String moustache_render_value2(const String &format, T (&values)[n], size_t i, c
     return s;
 }
 
-
+template <typename T, size_t n>
+String moustache_render_array(const String &format, T (&values)[n], size_t i)
+{
+    String s;
+    if (i < n) {
+      const moustache_variable_t what[] =  { *values[i] };    
+      s = moustache_render(format,what);
+    }
+    return s;
+}
 #endif
 

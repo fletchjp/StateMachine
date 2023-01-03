@@ -152,9 +152,11 @@ void setup() {
   pos = 2;
   position_value[0].value = String(pos);
   Serial.println(moustache_render(position,position_value));
+  pos = 3;
+  moustache_value(position_value,0,pos);
+  Serial.println(moustache_render(position,position_value));
 
   Serial.println(moustache_render(point,point_value));
-
   x = 3;
   y = 4;  
   point_value[0].value = String(x);

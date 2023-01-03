@@ -19,6 +19,13 @@ size_t moustache_size(T (&values)[n])
   return n;
 }
 
+template <typename T, typename V, size_t n>
+void moustache_value(T (&values)[n], size_t i, const V &v)
+{
+  if (i < n) values[i].value = String(v);
+  //return n;
+}
+
 const int STATE_DELAY = 1000;
 const int LED = 13;
 
@@ -27,6 +34,7 @@ StateMachine machine = StateMachine();
 const char *available_state = "State {{state}} is available";
 const char *current_state = "Current state is {{state}}";
 const char *position = "moveServo reaches {{pos}}";
+const char *point = " ( {{x}} , {{y}} ) ";
 
 // Definitions for each state.
 const moustache_variable_t state0[] = { {"state", "0, reset"} };
@@ -36,8 +44,10 @@ const moustache_variable_t state2[] = { {"state", "2, wait"} };
 const moustache_variable_t *states_array[]= { state0, state1, state2 };
 
 int pos = 0;    // variable to store the servo position
-
 const moustache_variable_t position_value[] = { { "pos", String(pos) } };
+
+double x = 0, y = 0;
+const moustache_variable_t point_value[] = { { "x", String(x) }, { "y", String(y) } };
 
 /***********************************************************
  * What do we mean by state?
@@ -118,9 +128,6 @@ bool transitionS2S1(){
     return false;
 }
 
-
-
-
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(115200);
@@ -146,7 +153,17 @@ void setup() {
   position_value[0].value = String(pos);
   Serial.println(moustache_render(position,position_value));
 
-}
+  Serial.println(moustache_render(point,point_value));
+
+  x = 3;
+  y = 4;  
+  point_value[0].value = String(x);
+  point_value[1].value = String(y);
+  Serial.println(moustache_render(point,point_value));
+  moustache_value(point_value,0,y);
+  moustache_value(point_value,1,x);
+  Serial.println(moustache_render(point,point_value));
+ }
 
 void loop() {
   // put your main code here, to run repeatedly:

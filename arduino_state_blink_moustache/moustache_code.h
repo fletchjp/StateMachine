@@ -6,9 +6,12 @@
 #ifndef MOUSTACHE_CODE_H
 #define MOUSTACHE_CODE_H
 
+// First attempt at moustache reporting errors.
 const char *moustache_error = "** moustache error : {{error}} {{i}} **";
-size_t moustache_i = 0;
+size_t moustache_i = 0; // default error number
 const moustache_variable_t array_error[] = { { "error", "array range error, i ="}, { "i", String(moustache_i)} };
+const moustache_variable_t value_error[] = { { "error", "value range error, i ="}, { "i", String(moustache_i)} };
+const moustache_variable_t value_error1[] = { { "error", "value range error, j ="}, { "i", String(moustache_i)} };
 
 // This returns the size of a moustache_variable_t array and also of an array of arrays.
 // It can be used to control output from rendering the array of arrays
@@ -32,9 +35,14 @@ void moustache_value(T (&values)[n], size_t i, const V &v)
 template <typename T, typename V, size_t n>
 String moustache_render_value(const String &format, T (&values)[n], size_t i, const V &v )
 {
-    if (i < n) values[i].value = String(v);
-    //moustache_value(values,i,v);
-    String s =  moustache_render(format,values);
+    String s;
+    if (i < n) { 
+      values[i].value = String(v);
+      s =  moustache_render(format,values);
+    } else {
+      moustache_value(value_error,1,i);     
+      s = moustache_render(moustache_error,value_error);
+    }
     return s;
 }
 
@@ -42,10 +50,21 @@ String moustache_render_value(const String &format, T (&values)[n], size_t i, co
 template <typename T, typename V, typename W, size_t n>
 String moustache_render_value2(const String &format, T (&values)[n], size_t i, const V &v, size_t j, const W &w )
 {
-    if (i < n) values[i].value = String(v);
-    if (i < n) values[j].value = String(w);
-    //moustache_value(values,i,v);
-    String s =  moustache_render(format,values);
+    String s;
+    if (i < n) { 
+      values[i].value = String(v);
+      if (j < n) 
+      {
+        values[j].value = String(w);
+        s =  moustache_render(format,values);
+      } else {
+        moustache_value(value_error1,1,j);     
+        s = moustache_render(moustache_error,value_error1);
+      }
+    } else {
+      moustache_value(value_error,1,i);     
+      s = moustache_render(moustache_error,value_error);      
+    }
     return s;
 }
 

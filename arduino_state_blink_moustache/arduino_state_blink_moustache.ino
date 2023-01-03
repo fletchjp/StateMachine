@@ -149,8 +149,10 @@ void setup() {
   moustache_value(position_value,0,pos);
   Serial.println(moustache_render(position,position_value));
   pos = 4;
-  // For some reason this will not compile with the format as the first argument.
+ 
   Serial.println(moustache_render_value(position,position_value,0,pos));
+  Serial.println("Test of value range error");
+  Serial.println(moustache_render_value(position,position_value,1,pos));
 
   Serial.println(moustache_render(point,point_value));
   x = 3;
@@ -163,6 +165,9 @@ void setup() {
   Serial.println(moustache_render(point,point_value));
  
   Serial.println(moustache_render_value2(point,point_value,0,x,1,y));
+
+  Serial.println(moustache_render_value2(point,point_value,2,x,1,y));
+  Serial.println(moustache_render_value2(point,point_value,0,x,3,y));
 
  }
 

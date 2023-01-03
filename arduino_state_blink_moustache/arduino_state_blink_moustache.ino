@@ -2,6 +2,7 @@
 // Simple example using the StateMachine library.
 // This also shows how the moustache library can be used.
 // moutache_size is something I have invented.
+// There are a number of new moustache functions now in moustache_code.h
 
 /*
  * Converting example from 
@@ -61,8 +62,9 @@ uint32_t timeLastTransition = 0;
 State* S0 = machine.addState([]() {
   if(machine.executeOnce){
     //Serial.println("State 0, reset");
-    const moustache_variable_t what[] =  { *states_array[0] };    
-    Serial.println(moustache_render(current_state,what));
+    //const moustache_variable_t what[] =  { *states_array[0] };    
+    //Serial.println(moustache_render(current_state,what));
+    Serial.println(moustache_render_array(current_state,states_array,0));
     digitalWrite(LED,LOW);
     Blink_State = RESET;
     Led_State = LED_off;
@@ -76,8 +78,9 @@ State* S1 = machine.addState([]() {
       Blink_State = BLINK;
       //Serial.println("State 1, blink");
       size_t i = 1;
-      const moustache_variable_t what[] =  { *states_array[i] };    
-      Serial.println(moustache_render(current_state,what));
+      //const moustache_variable_t what[] =  { *states_array[i] };    
+      //Serial.println(moustache_render(current_state,what));
+      Serial.println(moustache_render_array(current_state,states_array,1));
       digitalWrite(LED, !digitalRead(LED));
     }
 });
@@ -87,8 +90,8 @@ State* S2 = machine.addState([]() {
     if(machine.executeOnce){
       Blink_State = WAIT;
       //Serial.println("State 2, wait");
-      const moustache_variable_t what[] =  { *states_array[2] };    
-      Serial.println(moustache_render(current_state,what));
+      //const moustache_variable_t what[] =  { *states_array[2] };    
+      Serial.println(moustache_render_array(current_state,states_array,2));
       timeLastTransition = millis();
     }
 });

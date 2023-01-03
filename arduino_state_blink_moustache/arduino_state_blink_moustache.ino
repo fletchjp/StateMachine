@@ -156,6 +156,8 @@ void setup() {
   moustache_value(point_value,0,y);
   moustache_value(point_value,1,x);
   Serial.println(moustache_render(point,point_value));
+ 
+  Serial.println(moustache_render_value2(point,point_value,0,x,1,y));
  }
 
 void loop() {

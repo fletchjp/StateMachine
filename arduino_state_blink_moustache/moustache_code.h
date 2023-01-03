@@ -12,6 +12,7 @@ size_t moustache_size(T (&values)[n])
   return n;
 }
 
+// Note: all value changes are checked for the size of values.
 template <typename T, typename V, size_t n>
 void moustache_value(T (&values)[n], size_t i, const V &v)
 {
@@ -26,6 +27,17 @@ template <typename T, typename V, size_t n>
 String moustache_render_value(const String &format, T (&values)[n], size_t i, const V &v )
 {
     if (i < n) values[i].value = String(v);
+    //moustache_value(values,i,v);
+    String s =  moustache_render(format,values);
+    return s;
+}
+
+// This will change two values and render the file in one go.
+template <typename T, typename V, typename W, size_t n>
+String moustache_render_value2(const String &format, T (&values)[n], size_t i, const V &v, size_t j, const W &w )
+{
+    if (i < n) values[i].value = String(v);
+    if (i < n) values[j].value = String(w);
     //moustache_value(values,i,v);
     String s =  moustache_render(format,values);
     return s;

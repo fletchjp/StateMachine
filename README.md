@@ -10,3 +10,5 @@ This is a new example which replaces the previous output using the Arduino moust
 This shows how a format can be defined for the output of the description of a state which will then output one of an array of state descriptions.
 
 This has now been extended to allow for run time values and also error reporting.
+
+The extensions have now been moved to the moustache library.

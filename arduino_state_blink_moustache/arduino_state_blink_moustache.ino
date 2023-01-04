@@ -11,8 +11,7 @@
 
 #include <StateMachine.h>
 #include <moustache.h>
-
-#include "moustache_code.h"
+#include <moustache_code.h>
 
 
 const int STATE_DELAY = 1000;

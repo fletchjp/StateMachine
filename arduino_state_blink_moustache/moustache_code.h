@@ -6,12 +6,12 @@
 #ifndef MOUSTACHE_CODE_H
 #define MOUSTACHE_CODE_H
 
-// First attempt at moustache reporting errors.
+// First attempt at moustache reporting run time errors.
 const char *moustache_error   = "** moustache error : {{error}} **";
 const char *moustache_error_i = "** moustache error : {{error}} {{i}} **";
 const char *moustache_error_j = "** moustache error : {{error}} {{j}} **";
 const char *moustache_error_k = "** moustache error : {{error}} {{k}} **";
-size_t moustache_i = 0; // default error number
+size_t moustache_i = 0; // default error number does not pollute simple namespace
 const moustache_variable_t array_error_i[] = { { "error", "array range error, i ="}, { "i", String(moustache_i)} };
 const moustache_variable_t value_error_i[] = { { "error", "value range error, i ="}, { "i", String(moustache_i)} };
 const moustache_variable_t value_error_j[] = { { "error", "value range error, j ="}, { "j", String(moustache_i)} };

@@ -16,7 +16,14 @@ const moustache_variable_t array_error_i[] = { { "error", "array range error, i 
 const moustache_variable_t value_error_i[] = { { "error", "value range error, i ="}, { "i", String(moustache_i)} };
 const moustache_variable_t value_error_j[] = { { "error", "value range error, j ="}, { "j", String(moustache_i)} };
 const moustache_variable_t value_error_k[] = { { "error", "value range error, k ="}, { "k", String(moustache_i)} };
-
+/* moustache error reporting:
+   Define errors like this:
+   const moustache_variable_t test_error[] ={ {"error", "test_error" } };
+   At run time do this:
+   Serial.println(moustace_render(moustache_error,test_error));
+   
+   See examples below for error reporting when a range error occures for value or array.
+*/
 // This returns the size of a moustache_variable_t array and also of an array of arrays.
 // It can be used to control output from rendering the array of arrays
 template <typename T, size_t n>

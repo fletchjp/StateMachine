@@ -25,6 +25,7 @@ const char *current_state = "Current state is {{state}}";
 const char *position = "moveServo reaches {{pos}}";
 const char *point = " ( {{x}} , {{y}} ) ";
 
+const moustache_variable_t test_error[] ={ {"error", "test_error" } };
 // Definitions for each state.
 const moustache_variable_t state0[] = { {"state", "0, reset"} };
 const moustache_variable_t state1[] = { {"state", "1, blink"} };
@@ -168,6 +169,8 @@ void setup() {
 
   Serial.println(moustache_render_value2(point,point_value,2,x,1,y));
   Serial.println(moustache_render_value2(point,point_value,0,x,3,y));
+
+  Serial.println(moustache_render(moustache_error,test_error));
 
  }
 

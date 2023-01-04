@@ -7,11 +7,15 @@
 #define MOUSTACHE_CODE_H
 
 // First attempt at moustache reporting errors.
-const char *moustache_error = "** moustache error : {{error}} {{i}} **";
+const char *moustache_error   = "** moustache error : {{error}} **";
+const char *moustache_error_i = "** moustache error : {{error}} {{i}} **";
+const char *moustache_error_j = "** moustache error : {{error}} {{j}} **";
+const char *moustache_error_k = "** moustache error : {{error}} {{k}} **";
 size_t moustache_i = 0; // default error number
-const moustache_variable_t array_error[] = { { "error", "array range error, i ="}, { "i", String(moustache_i)} };
-const moustache_variable_t value_error[] = { { "error", "value range error, i ="}, { "i", String(moustache_i)} };
-const moustache_variable_t value_error1[] = { { "error", "value range error, j ="}, { "i", String(moustache_i)} };
+const moustache_variable_t array_error_i[] = { { "error", "array range error, i ="}, { "i", String(moustache_i)} };
+const moustache_variable_t value_error_i[] = { { "error", "value range error, i ="}, { "i", String(moustache_i)} };
+const moustache_variable_t value_error_j[] = { { "error", "value range error, j ="}, { "j", String(moustache_i)} };
+const moustache_variable_t value_error_k[] = { { "error", "value range error, k ="}, { "k", String(moustache_i)} };
 
 // This returns the size of a moustache_variable_t array and also of an array of arrays.
 // It can be used to control output from rendering the array of arrays
@@ -40,8 +44,8 @@ String moustache_render_value(const String &format, T (&values)[n], size_t i, co
       values[i].value = String(v);
       s =  moustache_render(format,values);
     } else {
-      moustache_value(value_error,1,i);     
-      s = moustache_render(moustache_error,value_error);
+      moustache_value(value_error_i,1,i);     
+      s = moustache_render(moustache_error_i,value_error_i);
     }
     return s;
 }
@@ -58,12 +62,12 @@ String moustache_render_value2(const String &format, T (&values)[n], size_t i, c
         values[j].value = String(w);
         s =  moustache_render(format,values);
       } else {
-        moustache_value(value_error1,1,j);     
-        s = moustache_render(moustache_error,value_error1);
+        moustache_value(value_error_j,1,j);     
+        s = moustache_render(moustache_error_j,value_error_j);
       }
     } else {
-      moustache_value(value_error,1,i);     
-      s = moustache_render(moustache_error,value_error);      
+      moustache_value(value_error_i,1,i);     
+      s = moustache_render(moustache_error_i,value_error_i);      
     }
     return s;
 }
@@ -77,8 +81,8 @@ String moustache_render_array(const String &format, T (&values)[n], size_t i)
       const moustache_variable_t what[] =  { *values[i] };    
       s = moustache_render(format,what);
     } else {
-      moustache_value(array_error,1,i);     
-      s = moustache_render(moustache_error,array_error);
+      moustache_value(array_error_i,1,i);     
+      s = moustache_render(moustache_error_i,array_error_i);
     }
     return s;
 }
@@ -92,8 +96,8 @@ String moustache_render_array_value(const String &format, T (&values)[n], size_t
       const moustache_variable_t what[] =  { *values[i] };    
       s = moustache_render_value(format,what,j,v);
     }  else {
-      moustache_value(array_error,1,i);     
-      s = moustache_render(moustache_error,array_error);
+      moustache_value(array_error_i,1,i);     
+      s = moustache_render(moustache_error_i,array_error_i);
     }
     return s; 
 }

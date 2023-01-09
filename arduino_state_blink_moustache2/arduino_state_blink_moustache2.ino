@@ -1,3 +1,6 @@
+// arduino_state_blink_moustache2.ino
+// This is a reduced example to compare the memory use with arduino_state_blink.
+
 // arduino_state_blink with moustache output
 // Simple example using the StateMachine library.
 // This also shows how the moustache library can be used.

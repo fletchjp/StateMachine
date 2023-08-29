@@ -3,6 +3,8 @@
 
 I have made this repository which was not at first visible in my GitHub as it is private and I needed to log in.
 
+Some of these codes use the StateMachine library and some have been changed to use TaskManagerIO instead.
+
 ## arduino_state_blink_moustache
 
 This is a new example which replaces the previous output using the Arduino moustache for output.

@@ -31,7 +31,7 @@ enum Blink_State { RESET, BLINK, WAIT };
 Blink_State blink_state;
 
 uint32_t timeLastTransition = 0;
- 
+
 /*
  * States for the blink_state machine.
  */

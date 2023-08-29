@@ -5,6 +5,22 @@ I have made this repository which was not at first visible in my GitHub as it is
 
 Some of these codes use the StateMachine library and some have been changed to use TaskManagerIO instead.
 
+## arduino_state_test
+
+Empty base case
+
+## arduino_state_machine
+
+Example with serial monitor output
+
+## arduino_state_blink
+
+This is the first example to blink the LED.
+
+## arduino_state_blink_new
+
+Example using enum class instead of enum.
+
 ## arduino_state_blink_moustache
 
 This is a new example which replaces the previous output using the Arduino moustache for output.

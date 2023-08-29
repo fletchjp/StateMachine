@@ -69,7 +69,7 @@ enum Blink_State { RESET, BLINK, WAIT };
 Blink_State blink_state;
 
 uint32_t timeLastTransition = 0;
-
+ 
 class Blinker : public BaseEvent {
   private: 
     byte blinker_pin;
@@ -112,6 +112,7 @@ class Blinker : public BaseEvent {
       Serial.println("State 1, blink");
       int read_pin = digitalRead(blinker_pin);      
       digitalWrite(blinker_pin, !read_pin);
+      // Note that the read value is now out of date.
       if (read_pin == HIGH) led_state = Led_State::LED_off;
       else led_state = Led_State::LED_on;
       timeLastTransition = millis();      

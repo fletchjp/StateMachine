@@ -30,3 +30,7 @@ This shows how a format can be defined for the output of the description of a st
 This has now been extended to allow for run time values and also error reporting.
 
 The extensions have now been moved to the moustache library.
+
+## states_timers
+
+Timers example from the StateMachine library.

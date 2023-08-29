@@ -1,5 +1,5 @@
-// arduino_state_event_keypad
-// Modify to include keypad
+// arduino_state_event_keypad_new
+// Modify to include keypad and use enum class instead of enum.
 // This example now runs IoAbstraction and TaskManagerIO to run the state machine.
 
 // This is equivalent to arduino_state_keypad and has lower memory and data.
@@ -57,9 +57,16 @@ char key_pressed = 'Z';
 
 // Global variables for the actual state.
 
-enum { LED_off, LED_on } Led_State;
+//enum { LED_off, LED_on } Led_State;
 
-enum { RESET, BLINK, WAIT } Blink_State;
+//enum { RESET, BLINK, WAIT } Blink_State;
+
+// Replace enum with enum class
+enum class Led_State { LED_off, LED_on };
+Led_State led_state; // This is how to make a variable.
+
+enum Blink_State { RESET, BLINK, WAIT };
+Blink_State blink_state;
 
 uint32_t timeLastTransition = 0;
 
@@ -76,7 +83,7 @@ class Blinker : public BaseEvent {
     }
     uint32_t timeOfNextCheck() override {  
       //Serial.println("Event Next Check");
-       Blink_State = WAIT;
+       blink_state = Blink_State::WAIT;
        if (key_pressed == reset_key) { // This is S2S0
           Serial.println("Reset requested by key press");
           setStart();
@@ -94,18 +101,22 @@ class Blinker : public BaseEvent {
     void setStart() { // This is also for reset - was state S0
       Serial.println("State 0, reset");
       digitalWrite(blinker_pin,LOW);
-      Blink_State = RESET;
-      Led_State = LED_off;
+      blink_state = Blink_State::RESET;
+      led_state = Led_State::LED_off;
       timeLastTransition = millis();
       Serial.println("State 2, wait");
     }     
     void exec() override {
       // State 1
-      Blink_State = BLINK;
+      blink_state = Blink_State::BLINK;
       Serial.println("State 1, blink");
-      digitalWrite(blinker_pin, !digitalRead(blinker_pin));
+      int read_pin = digitalRead(blinker_pin);      
+      digitalWrite(blinker_pin, !read_pin);
+      if (read_pin == HIGH) led_state = Led_State::LED_off;
+      else led_state = Led_State::LED_on;
       timeLastTransition = millis();      
       Serial.println("State 2, wait");
+      blink_state = Blink_State::WAIT;
     }  
     ~Blinker() override = default;
 };

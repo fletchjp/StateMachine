@@ -7,7 +7,7 @@
 
 // Reset can be made by pressing key 0
 
-/*+++++++++++++++++++++++++++++++++++++
+/*
  * Converting example from 
  * https://arduinoplusplus.wordpress.com/2019/07/06/finite-state-machine-programming-basics-part-1/
  */

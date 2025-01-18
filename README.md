@@ -3,6 +3,14 @@
 
 I have made this repository which was not at first visible in my GitHub as it is private and I needed to log in.
 
+I have now made this repository public.
+
+## Embedded Template Library
+
+I am putting my examples for the Embedded Template Library Arduino library into a folder here.
+
+## Other codes
+
 Some of these codes use the StateMachine library and some have been changed to use TaskManagerIO instead.
 
 ## arduino_state_test

@@ -4,6 +4,8 @@ I am putting my examples for the Embedded Template Library Arduino library into 
 
 These examples are derived from the Embedded Template Library documentation.
 
+These all use Serial.print and println to provide output.
+
 ## Example_1_Vector_simple_use
 
 This is the only Arduino example provided for the library. I have added more output.

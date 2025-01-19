@@ -1,9 +1,11 @@
 // Example_4_StateMachine.ino
 // Starting from state machine example on the web page.
+// https://www.etlcpp.com/fsm.html
 // There are a few changes.
 // I cannot yet compile on_event with a sender.
 // I am adding some output.
 // I have added a Fault message which is received as "unknown"
+// I have also added a second fsm called AnotherSystem.
 
 // make sure that we do not rely on the STL
 #define ETL_NO_STL

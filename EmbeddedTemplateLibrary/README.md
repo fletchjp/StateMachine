@@ -4,6 +4,8 @@ I am putting my examples for the Embedded Template Library Arduino library into 
 
 These examples are derived from the Embedded Template Library documentation.
 
+https://www.etlcpp.com/arduino.html
+
 These all use Serial.print and println to provide output.
 
 ## Example_1_Vector_simple_use
@@ -21,6 +23,7 @@ Another adapted example
 ## Example_4_StateMachine
 
 This is adapted from the Motor control example in the StateMachine documentation.
+See the web page https://www.etlcpp.com/fsm.html
 
 
 

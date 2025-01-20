@@ -25,5 +25,13 @@ Another adapted example
 This is adapted from the Motor control example in the StateMachine documentation.
 See the web page https://www.etlcpp.com/fsm.html
 
+## Example_5
 
+This is not yet available.
 
+## Example_6_HierarchicalStateMachine_test
+
+This example is adapted from test code documented in the example code.
+The web page https://www.etlcpp.com/hfsm.html gives an introduction without an example.
+The documentation is incomplete and the problem is explained in the example code.
+The example also contains some other ETL features e.g. documenting enums.

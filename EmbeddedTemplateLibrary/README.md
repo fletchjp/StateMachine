@@ -27,9 +27,9 @@ Another adapted example
 This is adapted from the Motor control example in the StateMachine documentation.
 See the web page https://www.etlcpp.com/fsm.html
 
-## Example_5
+## Example_5_HierarchicalStateMachine
 
-This is not yet available.
+This is an example implementation of the HierarchicalStateMachine.
 
 ## Example_6_HierarchicalStateMachine_test
 

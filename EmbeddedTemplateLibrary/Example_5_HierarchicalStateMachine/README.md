@@ -1,4 +1,4 @@
-# Example_5_StateMachine
+# Example_5_HierarchicalStateMachine
 
 This is an example implementation of the HierarchicalStateMachine.
 

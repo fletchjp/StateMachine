@@ -27,11 +27,6 @@ Another adapted example
 This is adapted from the Motor control example in the StateMachine documentation.
 See the web page https://www.etlcpp.com/fsm.html
 
-```mermaid
-graph TD;
-   A-->B
-```
-
 ## Example_5_HierarchicalStateMachine
 
 This is an example implementation of the HierarchicalStateMachine.

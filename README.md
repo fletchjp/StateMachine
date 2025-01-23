@@ -14,8 +14,8 @@ Mermaid can be used to make a range of different diagrams and they can be coded 
 ``` mermaid
 stateDiagram-v2
   state: "Door"
-  open --> shut : Closing
-  shut --> open : Opening
+  open --> closed : Closing
+  closed --> open : Opening
 ```
 
 ## Embedded Template Library

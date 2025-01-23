@@ -11,5 +11,7 @@ https://mermaid.js.org/intro/getting-started.html
 stateDiagram-v2
    [*] --> Idle
    Idle --> Running : START
+   Running --> WindingDown : STOP
+   WindingDown --> Idle : STOPPED
 ```
 

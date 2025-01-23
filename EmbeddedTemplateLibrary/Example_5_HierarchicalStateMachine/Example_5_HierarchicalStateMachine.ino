@@ -257,7 +257,7 @@ public:
 
 //***********************************
 // The running state.
-// Accepts Stop and SetSpeed events.
+// Accepts Stop events.
 //***********************************
 class Running : public etl::fsm_state<MotorControl, Running, StateId::RUNNING, EStop>
 {

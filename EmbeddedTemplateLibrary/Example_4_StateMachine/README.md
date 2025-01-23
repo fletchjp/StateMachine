@@ -12,7 +12,7 @@ stateDiagram-v2
    [*] --> Idle
    Idle --> Running : START
    Running --> WindingDown : STOP
-   Running --> Running : CHANGE SPEED
+   Running --> Running : SET_SPEED
    WindingDown --> Idle : STOPPED
 ```
 

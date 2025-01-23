@@ -8,15 +8,16 @@ https://mermaid.js.org/intro/getting-started.html
 
 ```mermaid
 stateDiagram-v2
-   state: "HierarchicalStateMachine" as hsm
+   state: "HierarchicalStateMachine"
    [*] --> Idle
    Idle --> Running : START
    state Running {
    [*] --> WindingUp
-   WindingUp --> AtSpeed
+   WindingUp --> AtSpeed  : TIMEOUT
+   WindingUp --> WindingDown  : STOP
    AtSpeed--> WindingDown : STOP
    AtSpeed --> AtSpeed : SET_SPEED
-   WindingDown --> [*} : STOPPED
+   WindingDown --> [*] : STOPPED
    }
    Running --> Idle
 ```

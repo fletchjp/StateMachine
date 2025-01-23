@@ -5,6 +5,19 @@ I have made this repository which was not at first visible in my GitHub as it is
 
 I have now made this repository public.
 
+## State Machine diagrams
+
+I have begun to use Mermaid (https://mermaid.js.org/intro/getting-started.html) as a way of making diagrams for Finite State Machines.
+
+Mermaid can be used to make a range of different diagrams and they can be coded as special text in GitHub pages using Markdown.
+
+``` mermaid
+stateDiagram-v2
+  state "Door"
+  open --> shut : Closing
+  shut --> open : Opening
+```
+
 ## Embedded Template Library
 
 I am putting my examples for the Embedded Template Library Arduino library into a folder here.

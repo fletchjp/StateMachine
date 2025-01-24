@@ -18,6 +18,15 @@ stateDiagram-v2
   closed --> open : Opening
 ```
 
+``` mermaid
+stateDiagram-v2
+  direction LR
+  state: "Door"
+  open --> closed : Closing
+  closed --> open : Opening
+```
+
+
 ## Embedded Template Library
 
 I am putting my examples for the Embedded Template Library Arduino library into a folder here.

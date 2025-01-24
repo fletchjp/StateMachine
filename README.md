@@ -17,6 +17,7 @@ stateDiagram-v2
   open --> closed : Closing
   closed --> open : Opening
 ```
+There needs to be some other text between diagrams.
 
 ### Another diagram
 
@@ -27,6 +28,7 @@ stateDiagram-v2
   open --> closed : Closing
   closed --> open : Opening
 ```
+
 
 
 ## Embedded Template Library

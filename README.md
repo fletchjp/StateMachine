@@ -16,9 +16,7 @@ stateDiagram-v2
   state: "Door"
   open --> closed : Closing
   closed --> open : Opening
-```
 
-``` mermaid
 stateDiagram-v2
   direction LR
   state: "Door"

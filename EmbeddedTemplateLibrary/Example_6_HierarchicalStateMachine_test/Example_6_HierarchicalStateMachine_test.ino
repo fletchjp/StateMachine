@@ -25,7 +25,8 @@
 ///////////////////////////////////////////////////////////////////////////////////
 // Note on setting up an HFSM. See the declaration on line 185.
 // The class has to inherit from hfsm instead of fsm.
-// The hfsm constructor needs an enum from the struct HFsmId which is not documented anywhere I have found.
+// The hfsm constructor needs an enum from the struct HFsmId 
+// which is not documented anywhere I have found.
 // See line 46 for how to do this.
 ///////////////////////////////////////////////////////////////////////////////////
 

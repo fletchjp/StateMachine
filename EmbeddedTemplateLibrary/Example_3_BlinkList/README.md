@@ -6,6 +6,7 @@ https://mermaid.js.org/intro/getting-started.html
 
 ```mermaid
 flowchart TD
+    id1(Basic Arduino Flowchart) 
     Start --> Setup
     Setup --> Loop
     Loop --> Loop

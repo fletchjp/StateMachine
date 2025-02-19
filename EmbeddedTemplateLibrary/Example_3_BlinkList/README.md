@@ -12,3 +12,11 @@ flowchart TD
     Loop --> Loop
 ```
 
+```mermaid
+flowchart LR
+    id1(Basic Arduino Flowchart) 
+    Start --> Setup
+    Setup --> Loop
+    Loop --> Loop
+```
+

@@ -9,6 +9,8 @@
 // Now that I have Example_6 working I am going to sort this one out as well.
 // This is now functioning. It is the same as Example 6 except for some test code.
 
+// The README.md file has a diagram using Mermaid (https://mermaid.js.org/intro/getting-started.html)
+
 // I am using Example_4 as a starting point.
 // There are a few changes in the example 4 case.
 // I cannot yet compile on_event with a sender.

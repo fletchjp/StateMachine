@@ -13,6 +13,8 @@
 // One conclusion I have come to is to use hfsm only when needed, and fsm otherwise.
 //////////////////////////////////////////////////////////////
 
+// The README.md file has a diagram using Mermaid (https://mermaid.js.org/intro/getting-started.html)
+
 // Example_5_HierarchicalStateMachine.ino - Currently not functional
 // Starting from hierarchical state machine example on the web page.
 // https://www.etlcpp.com/hfsm.html

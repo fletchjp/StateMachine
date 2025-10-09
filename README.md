@@ -48,11 +48,11 @@ There needs to be some other text between diagrams.
   direction LR
   state: "Door"
   open --> closed : Closing
-  open --> locked : Cannot lock
+  open --> locked : XX Cannot lock
   closed --> open : Opening
   closed --> locked : Locking
   locked --> closed : Unlocking
-  locked --> locked : Cannot open
+  locked --> open :  XX Cannot open
 ```
 
 

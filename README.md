@@ -41,6 +41,19 @@ There needs to be some other text between diagrams.
   locked --> closed : Unlocking
 ```
 
+### Diagram with locking added and some forbidden actions
+ 
+ ``` mermaid
+  stateDiagram-v2
+  direction LR
+  state: "Door"
+  open --> closed : Closing
+  closed --> open : Opening
+  closed --> locked : Locking
+  locked --> closed : Unlocking
+  locked --> locked : Cannot open
+```
+
 
 ## Embedded Template Library
 

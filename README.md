@@ -79,6 +79,22 @@ There needs to be some other text between diagrams.
   closed_locked --> closed_unlocked : Unlocking
 ```
 
+### Diagram with heirarchy
+
+```mermaid
+   stateDiagram-v2
+   direction LR
+   state: "Door"
+   [*] --> Closed and Unlocked
+   Closed and Unlocked --> Lock-Unlock : START
+   state Lock-Unlock {
+   [*] --> Unlocked
+   Unlocked --> Locked : LOCKING
+   Locked --> Unlocked : UNLOCKING
+   Unlocked --> [*]
+   }
+```
+
 
 ## Embedded Template Library
 

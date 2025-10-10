@@ -84,7 +84,7 @@ There needs to be some other text between diagrams.
 ```mermaid
    stateDiagram-v2
    direction LR
-   state: "Door"
+   state: "Door Closed"
    [*] --> A : want to lock
    state A {
    [*] --> Unlocked

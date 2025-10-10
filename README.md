@@ -86,17 +86,17 @@ There needs to be some other text between diagrams.
    direction LR
    state: "Door"
    [*] --> Closed
-   [*] --> Unlocked
+   [*] --> unlocked
    state Closed {
    [*] --> Unlocked
    Unlocked --> Locked : Locking
    Locked --> Unlocked : Unlocking
    Unlocked --> [*]
    }
-   state Unlocked {
+   state unlocked {
    [*] --> Closed
-   Closed --> Open : Opening
-   Open --> Closed : Closing
+   closed --> open : Opening
+   open --> closed : Closing
    Closed --> [*]
    }
 ```

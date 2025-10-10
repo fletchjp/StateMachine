@@ -85,23 +85,20 @@ There needs to be some other text between diagrams.
    stateDiagram-v2
    direction LR
    state: "Door"
-   [*] --> UnlockedClosed
-   UnlockedClosed --> Closed : want to lock
-   UnlockedClosed --> unlocked : want to open
+   [*] --> Closed : want to lock
+   [*] --> unlocked : want to open
    state Closed {
    [*] --> Unlocked
    Unlocked --> Locked : Locking
    Locked --> Unlocked : Unlocking
    Unlocked --> [*]
    }
-   Closed --> UnlockedClosed
    state unlocked {
    [*] --> Closed
    closed --> open : Opening
    open --> closed : Closing
    Closed --> [*]
    }
-   unlocked --> UnlockedClosed
 ```
 
 

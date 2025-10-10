@@ -87,6 +87,7 @@ There needs to be some other text between diagrams.
    state: "Door"
    [*] --> UnlockedClosed
    UnlockedClosed --> Closed : want to lock
+   UnlockedClosed --> unlocked : want to open
    state Closed {
    [*] --> Unlocked
    Unlocked --> Locked : Locking
@@ -94,7 +95,6 @@ There needs to be some other text between diagrams.
    Unlocked --> [*]
    }
    Closed --> UnlockedClosed
-   UnlockedClosed --> unlocked : want to open
    state unlocked {
    [*] --> Closed
    closed --> open : Opening

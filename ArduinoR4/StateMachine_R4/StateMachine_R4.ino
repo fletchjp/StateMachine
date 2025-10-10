@@ -1,0 +1,121 @@
+// StateMachine_R4.ino
+// Bring across the StateMachine code from the Raspberry Pi 5.
+// This is the example I have had working on the Raspberry Pi 5.
+
+// This is a C++17 file from the work of Tamir Bahar
+// https://tamir.dev/posts/a-functional-style-state-macnine-in-cpp
+// https://tamir.dev/posts/a-functional-style-state-macnine-in-cpp-part2
+// cppreference has this as C++26.
+// No that is extension as member function.
+
+// I have extended the example slightly to use the Context to report
+// the current state based on the last event processed.
+
+#include <variant>
+#include <vector>
+#include <tuple> // Needed for std::tie
+#include <Streaming.h>
+
+/////////////////////////////////////////////////////////////
+// StateMachine code here.
+/////////////////////////////////////////////////////////////
+
+#include "StateMachine.hpp"
+
+/////////////////////////////////////////////////////////////
+// Application specific code here.
+/////////////////////////////////////////////////////////////
+
+// Events are part of the user code.
+struct EventA {
+	const char* msg{nullptr};
+};
+
+struct EventB {
+	int number{0};
+};
+
+using Event = std::variant<EventA, EventB>;
+
+// Context may change with the user code.
+// In this example I have added a single char to indicate the state.
+// This is passed in as an argument to the Inc function.
+struct Context {
+	Context Inc(char b) const {
+		return Context{counter + 1, cstate = b};
+	}
+	int counter = 0;
+	mutable char cstate {'X'};  // Initial value
+};
+
+template <class T>
+using PairWithCtx = std::pair<T, const Context>;
+
+using State = SelfReturning<PairWithCtx>::WithArgs<const Context&, Event>;
+
+State::RetType A(const Context&, Event);
+State::RetType B(const Context&, Event);
+
+State::RetType A(const Context& ctx, Event evt) {
+	Serial << "State A, counter = " << ctx.counter << endl;
+	return std::visit(overloaded {
+		[&] (EventA e) {
+			if (e.msg != nullptr) {
+				Serial << "A message = " << e.msg << endl;
+			} else {
+				Serial << "A message = nullptr" << endl; 
+			}
+			return make_pair(A, ctx);
+		},
+		[&] (EventB) { return make_pair(B, ctx.Inc('B')); }
+	}, evt);
+}
+
+State::RetType B(const Context& ctx, Event evt){
+	Serial << "State B, counter = " << ctx.counter << endl;
+	return std::visit(overloaded {
+		[&] (EventA) { return make_pair(A, ctx.Inc('A')); },
+		[&] (EventB e) {
+			Serial << "B number = " << e.number << endl;
+			return make_pair(B, ctx);
+		}
+	}, evt);
+}
+
+void setup() {
+  // put your setup code here, to run once:
+    Serial.begin(115200);
+    delay(5000);
+#ifdef ARDUINO_ARCH_RP2040
+    Serial.println("Running tests on a Pico");
+#endif
+#ifdef ARDUINO_MINIMA
+    Serial.println("\nArduino R4 Minima");
+#endif
+#ifdef ARDUINO_UNOR4_WIFI
+    Serial.println("\nArduino R4 Wifi");
+#endif
+    //pinMode(LED,OUTPUT);
+    Serial.println("Arduino R4 State Machine test");
+
+    Serial << "========================================" << endl;
+	  Serial << "StateMachine from example by Tamir Bahar" << endl;
+	  Serial << "Some code moved to file StateMachine.hpp" << endl;
+    Serial << "========================================" << endl;
+	  State state = A;
+	  Context ctx{};
+	  Event events[] = {EventA{"Starting"},EventA{},EventB{},EventB{2},EventB{10},
+		              EventA{},EventA{"Hello World"},EventB{},EventB{20},EventA{}};
+	  for (auto evt : events) {
+		   // This unpacks the std::pair returned.
+		   std::tie(state, ctx) = state(ctx, evt);
+	  }
+    Serial << "Context " << ctx.cstate << " has counter = " << ctx.counter << endl;
+    Serial << "Note that the event data is ignored when the event type changes." << endl;
+
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+
+}

@@ -86,7 +86,7 @@ There needs to be some other text between diagrams.
    direction LR
    state: "Door"
    [*] --> Closed and Unlocked
-   Closed and Unlocked --> Lock-Unlock
+   Closed and Unlocked --> Lock-Unlock : START
    state Lock-Unlock {
    [*] --> Unlocked
    Unlocked --> Locked : LOCKING

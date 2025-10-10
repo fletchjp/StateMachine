@@ -101,7 +101,7 @@ There needs to be some other text between diagrams.
    open --> closed : Closing
    Closed --> [*]
    }
-   unlocked -> Start
+   unlocked --> Start
 ```
 
 

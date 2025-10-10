@@ -93,7 +93,7 @@ There needs to be some other text between diagrams.
    Locked --> Unlocked : Unlocking
    Unlocked --> [*]
    }
-   Closed -> Start
+   Closed --> Start
    Start --> unlocked : want to open
    state unlocked {
    [*] --> Closed

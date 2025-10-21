@@ -12,6 +12,11 @@ https://merg.org.uk/merg_wiki/doku.php?id=programming:finitestatemachines:start
 
 John Fletcher  October 2025
 
+## Code developments
+
+I have done a series of experiments to explore making the code more flexible. I will add some of these.
+
+
 
 
 

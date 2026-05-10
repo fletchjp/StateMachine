@@ -82,6 +82,12 @@ State::RetType B(const Context& ctx, Event evt){
 	}, evt);
 }
 
+
+// Moved to be global to be accessible in the loop
+State state = A;
+Context ctx{};
+
+
 void setup() {
   // put your setup code here, to run once:
     Serial.begin(115200);
@@ -105,17 +111,24 @@ void setup() {
 	  Serial << "StateMachine from example by Tamir Bahar" << endl;
 	  Serial << "Some code moved to file StateMachine.hpp" << endl;
     Serial << "========================================" << endl;
-	  State state = A;
-	  Context ctx{};
 	  Event events[] = {EventA{"Starting"},EventA{},EventB{},EventB{2},EventB{10},
-		              EventA{},EventA{"Hello World"},EventB{},EventB{20},EventA{}};
+		              EventA{},EventA{"Hello World"},EventB{},EventB{20},
+									EventA{},EventB{},EventB{25}};
 	  for (auto evt : events) {
 		   // This unpacks the std::pair returned.
 		   std::tie(state, ctx) = state(ctx, evt);
 	  }
     Serial << "Context " << ctx.cstate << " has counter = " << ctx.counter << endl;
     Serial << "Note that the event data is ignored when the event type changes." << endl;
-
+		// Entering data from the Serial monitor.
+		Serial << "Enter an integer to pass to an EventB" << endl;
+		Serial.setTimeout(10000);
+		int b = Serial.parseInt(); //delay(1000);
+		Serial << "Read number " << b << endl;
+		auto evt = EventB{b};
+		std::tie(state,ctx) = state(ctx,evt);
+    Serial << "Context " << ctx.cstate << " has counter = " << ctx.counter << endl;
+		Serial << "After tests" << endl;
 }
 
 //

@@ -96,6 +96,9 @@ void setup() {
     Serial.println("\nArduino R4 Wifi");
 #endif
     //pinMode(LED,OUTPUT);
+    printVersionInfo();
+    Serial.print("C++ version is ");
+    Serial.println(__cplusplus);
     Serial.println("Arduino R4 State Machine test");
 
     Serial << "========================================" << endl;
@@ -113,6 +116,19 @@ void setup() {
     Serial << "Context " << ctx.cstate << " has counter = " << ctx.counter << endl;
     Serial << "Note that the event data is ignored when the event type changes." << endl;
 
+}
+
+//
+// A function to print information about the file being compiled.
+//
+void printVersionInfo(void) {
+  Serial.println(__FILE__);
+  Serial.print("Compiled on ");
+  Serial.print(__DATE__);
+  Serial.print(" at ");
+  Serial.print(__TIME__);
+  Serial.print(" with IDE version ");
+  Serial.println(ARDUINO);
 }
 
 void loop() {

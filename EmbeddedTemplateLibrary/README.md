@@ -41,3 +41,17 @@ This example is adapted from test code documented in the example code.
 The web page https://www.etlcpp.com/hfsm.html gives an introduction without an example.
 The documentation is incomplete and the problem is explained in the example code.
 The example also contains some other ETL features e.g. documenting enums.
+
+## Examples 7 & 8
+
+Pending
+
+## Example_9_Visitor
+
+Example of the use of the ETL Visitor.
+
+## Example_10_VisitorVariant
+
+Example of the use of the ETL Visitor and Variant combined.
+
+I could not find an example of how to do the accept. I have sorted one out.

@@ -2,6 +2,9 @@
 // Bring across the StateMachine code from the Raspberry Pi 5.
 // This is the example I have had working on the Raspberry Pi 5.
 
+// I want now to have an equivalent for the UNO R3 or MEGA 
+// using the embedded template library.
+
 // This is a C++17 file from the work of Tamir Bahar
 // https://tamir.dev/posts/a-functional-style-state-macnine-in-cpp
 // https://tamir.dev/posts/a-functional-style-state-macnine-in-cpp-part2

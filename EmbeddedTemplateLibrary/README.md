@@ -42,9 +42,13 @@ The web page https://www.etlcpp.com/hfsm.html gives an introduction without an e
 The documentation is incomplete and the problem is explained in the example code.
 The example also contains some other ETL features e.g. documenting enums.
 
-## Examples 7 & 8
+## Examples 7
 
 Pending
+
+## Exanmple_8_MiscIdeas
+
+Trials of some other features of ETL.
 
 ## Example_9_Visitor
 
@@ -55,3 +59,6 @@ Example of the use of the ETL Visitor.
 Example of the use of the ETL Visitor and Variant combined.
 
 I could not find an example of how to do the accept. I have sorted one out.
+
+I have now added a simple example of tuple and tie.
+

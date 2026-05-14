@@ -24,8 +24,10 @@
 #include "Embedded_Template_Library.h"  // This is required for any more etl import when using Arduino IDE
 #include "etl/visitor.h"
 #include "etl/variant.h"
+#include "etl/tuple.h"
 
 String board(ARDUINO_BOARD);
+
 
 // Events are part of the user code.
 struct EventA {
@@ -66,6 +68,7 @@ public:
 class Circle : public Shape
 {
   public:
+
   void accept(ShapeVisitor& visitor) { visitor.visit(*this); }
   //void accept(ShapeVariant& variant) { variant.visit(*this); }
 
@@ -153,8 +156,13 @@ void setup()
   Serial.print ("one = "); Serial.println(etl::get<int>(one));
   // Here I am using a list of allowed types.
   auto what = vars(1);
-
   Serial.print ("vars(1) = "); Serial.println(etl::get<int>(what));
+  Serial.println("Explore etl::tuple");
+  auto example = etl::make_tuple(1,2.2);
+  Serial.println("auto example = etl::make_tuple(1,2.2)");
+  int i1; double d2;
+  etl::tie(i1,d2) = example;
+  Serial.print("etl::tie(i1,d2) = example gives "); Serial.print(i1); Serial.print(", "); Serial.println(d2);
   Serial.println("End of setup");
 }
 

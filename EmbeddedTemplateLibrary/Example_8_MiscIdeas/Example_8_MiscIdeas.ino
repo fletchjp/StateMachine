@@ -6,6 +6,7 @@
 // This is deprecated - use etl/delegate instead.
 // I now have a few tests for delegate as well
 // The test results are at the end of the outputs.
+// Adding  inplace_function as alternative to delegate.
 
 // Example_4_StateMachine.ino
 // Starting from state machine example on the web page.
@@ -24,6 +25,8 @@
 #include "etl/function.h"
 #include "etl/delegate.h"
 #include "etl/functional.h"
+// Only in 20.45.0 not yet available in the Arduino library....
+//#include "etl/inplace_function.h"
 
   //*****************************************************************************
   // Tests for etl/function
@@ -112,6 +115,7 @@
 
   ObjectFunction test_static_function;
 
+
 void test_functions()
 {
   {
@@ -146,9 +150,9 @@ int Test::member_function2(int x, int y)
 
 Test test;
 
-int global(int n) { Serial.println ("global called"); return n; }
+int global(int n) { Serial.print("global called with "); Serial.println(n); return n; }
 
-auto lambda = [](int i) { Serial.println ("lambda called"); return i; };
+auto lambda = [](int i) { Serial.print("lambda called with "); Serial.println(i); return i; };
 
 void test_delegates()
 {

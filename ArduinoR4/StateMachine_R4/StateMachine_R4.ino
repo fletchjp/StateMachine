@@ -43,6 +43,7 @@ using Event = std::variant<EventA, EventB>;
 // Context may change with the user code.
 // In this example I have added a single char to indicate the state.
 // This is passed in as an argument to the Inc function.
+// The state does not hold information on its state.
 struct Context {
 	Context Inc(char b) const {
 		return Context{counter + 1, cstate = b};
@@ -87,8 +88,10 @@ State::RetType B(const Context& ctx, Event evt){
 
 
 // Moved to be global to be accessible in the loop
+// This gives the initial state.
 State state = A;
 Context ctx{};
+
 
 
 void setup() {
@@ -117,7 +120,10 @@ void setup() {
 	  Event events[] = {EventA{"Starting"},EventA{},EventB{},EventB{2},EventB{10},
 		              EventA{},EventA{"Hello World"},EventB{},EventB{20},
 									EventA{},EventB{},EventB{25}};
-	  for (auto evt : events) {
+		Serial << "Initial situation" << endl;
+		ctx.cstate = 'A'; // Set initial state in ctx.
+	  Serial << "Context " << ctx.cstate << " has counter = " << ctx.counter << endl;
+    for (auto evt : events) {
 		   // This unpacks the std::pair returned.
 		   std::tie(state, ctx) = state(ctx, evt);
 	  }

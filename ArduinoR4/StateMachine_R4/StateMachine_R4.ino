@@ -5,8 +5,8 @@
 // I want now to have an equivalent for the UNO R3 or MEGA 
 // using the embedded template library.
 
-// The problem with this style of code is that for N event types
-// there are N^2 lambdas to be written.
+// The problem with this style of code is that for N event types and M states
+// there are N*M lambdas to be written.
 
 // This is a C++17 file from the work of Tamir Bahar
 // https://tamir.dev/posts/a-functional-style-state-macnine-in-cpp

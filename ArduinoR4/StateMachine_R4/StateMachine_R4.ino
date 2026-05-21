@@ -33,12 +33,19 @@
 /////////////////////////////////////////////////////////////
 
 // Events are part of the user code.
+// Define an event such that multiplication is idempotent.
+// Wierd idea based on Clifford Algebra.
+// Two successive events of the same type have the same effect as one.
+// Pushing 4 for floor four twice does not give me floor 8.
 struct EventA {
 	const char* msg{nullptr};
+	EventA mult(const EventA& e) { return *this; }
 };
 
 struct EventB {
 	int number{0};
+	// Multiplying the numbers as an example
+	EventB mult(const EventB& e) { number *= e.number; return *this; }
 };
 
 using Event = std::variant<EventA, EventB>;
@@ -138,8 +145,11 @@ void setup() {
 		int b = Serial.parseInt(); //delay(1000);
 		Serial << "Read number " << b << endl;
 		auto evt = EventB{b};
+		auto evt2 = EventB{b+1};
 		std::tie(state,ctx) = state(ctx,evt);
     Serial << "Context " << ctx.cstate << " has counter = " << ctx.counter << endl;
+		Serial << "Multiplying events" << endl;
+		Serial << "evt2.mult(evt).number = " << evt2.mult(evt).number << endl;
 		Serial << "After tests" << endl;
 }
 

@@ -3,6 +3,8 @@
 // Copying some code from StateMachine_R3_A which is not working at the moment.
 // I am having success in getting etl::overload to work although the documentation
 // says it needs C++17 to work. See the test example at the end of this code.
+// It is possible to use a global variable to get a result from inside an overload.
+// See example in eventOverload.
 
 // Example_10_VisitorVariant.ino
 // visitor and visitable for C++11 to be like variant for C++17
@@ -32,6 +34,7 @@
 #include "etl/visitor.h"
 #include "etl/variant.h"
 #include "etl/tuple.h"
+#include "etl/version.h"
 
 #include "Overload.h"
 
@@ -137,10 +140,14 @@ public:
 
 EVisitor eventVisitor;
 
+int event_value = 0;
+
 // ETL documentation says this needs C++17. I have it working!!
+// It does not return a value so I have to arrage output some other way.
+// The examples show output via global variables.
 auto eventOverload = etl::make_overload(
-  [](EventA &a) { Serial.print("EventA : "); Serial.println(a.msg); },
-  [](EventB &b) { Serial.print("EventB : "); Serial.println(b.number); }
+  [](EventA &a) { Serial.print("EventA : "); event_value = 1; Serial.println(a.msg); },
+  [](EventB &b) { Serial.print("EventB : "); event_value = 2; Serial.println(b.number); }
 );
 
 using TypeVisitor = etl::visitor<int& , const char *>;
@@ -186,6 +193,7 @@ void setup()
   Serial.println("Embedded Template Library Example 11 with etl/visitor and etl/variant");
   Serial.print("running on ");
   Serial.println(board);
+  Serial.print("Using ETL Version "); Serial.println(ETL_VERSION);
   
   square_.accept(visitor);   // visitor's visit(Square) is called.
   circle.accept(visitor);   // visitor's visit(Circle&) is called.
@@ -198,7 +206,10 @@ void setup()
 		   // etl::tie(state, ctx) = state(ctx, evt);
        Serial.print("found an event: ");
        evt.accept(eventVisitor);
+       // This does not return anything,
+       // so I have to find a different way to extract information.
        evt.accept(eventOverload);
+       Serial.print ("event value : "); Serial.println(event_value);
 	}
   auto evt = EventB{};
   Serial.print("evt holds ");

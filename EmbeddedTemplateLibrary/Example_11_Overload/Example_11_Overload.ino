@@ -6,6 +6,8 @@
 // It is possible to use a global variable to get a result from inside an overload.
 // See example in eventOverload.
 
+// NOTE: etl::tie can decode an etl::tuple and NOT an etl::pair.
+
 // Example_10_VisitorVariant.ino
 // visitor and visitable for C++11 to be like variant for C++17
 // Extend to use variant for which I have not found documentation....

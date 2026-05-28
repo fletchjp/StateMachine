@@ -62,6 +62,8 @@ struct Context {
 	mutable char cstate {'X'};  // Initial value
 };
 
+// A std::pair can be decoded by std::tie.
+// This is not true for etl which needs etl::tuple.
 template <class T>
 using PairWithCtx = std::pair<T, const Context>;
 

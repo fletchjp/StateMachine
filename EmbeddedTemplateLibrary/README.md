@@ -14,6 +14,12 @@ My experience has been that there is a lot to learn to be able to use ETL succes
 
 There is a lot which is not clear in the documentation and I hope that these examples will be of help to others.
 
+Also, the version of the ETL currently available for Arduinos is 20.44.2 which is not the latest version which is 20.47.1.
+
+This means that some documentation will not apply to Arduino usage.
+
+I am finding that some features such as overload (see example 11) will run on Arduino R3 although the ETL documentation says that they need C++17 which is not available on R3.
+
 John Fletcher
 
 ## Example_1_Vector_simple_use

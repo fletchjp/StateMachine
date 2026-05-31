@@ -231,9 +231,12 @@ void setup()
   Serial.println("Explore etl::tuple");
 
   auto example = etl::make_tuple(1,2.2);
+  auto example_pair = etl::make_pair(1,3.3);
   Serial.println("auto example = etl::make_tuple(1,2.2)");
-  int i1; double d2;
+  int i1, i3; double d2, d4;
   etl::tie(i1,d2) = example;
+  //etl::tie(i3,d4) = example_pair; This does not compile.
+  //Compilation error: no match for 'operator=' (operand types are 'etl::tuple<int&, double&>' and 'etl::pair<int, double>')
   Serial.print("etl::tie(i1,d2) = example gives "); Serial.print(i1); Serial.print(", "); Serial.println(d2);
 
 // Overload example

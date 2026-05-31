@@ -10,6 +10,12 @@ https://www.etlcpp.com/arduino.html
 
 These all use Serial.print and println to provide output.
 
+My experience has been that there is a lot to learn to be able to use ETL successfully on Arduino R3 boards.
+
+There is a lot which is not clear in the documentation and I hope that these examples will be of help to others.
+
+John Fletcher
+
 ## Example_1_Vector_simple_use
 
 This is the only Arduino example provided for the library. I have added more output.

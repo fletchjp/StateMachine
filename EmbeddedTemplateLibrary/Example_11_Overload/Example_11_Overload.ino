@@ -188,6 +188,19 @@ struct MyPrint : PrintInt, PrintCString { // (3)
     using PrintCString::operator();
 };
 
+//
+// A function to print information about the file being compiled.
+//
+void printVersionInfo(void) {
+  Serial.println(__FILE__);
+  Serial.print("Compiled on ");
+  Serial.print(__DATE__);
+  Serial.print(" at ");
+  Serial.print(__TIME__);
+  Serial.print(" with IDE version ");
+  Serial.println(ARDUINO);
+}
+
 void setup()
 {
   Serial.begin(115200);
@@ -195,6 +208,9 @@ void setup()
   Serial.println("Embedded Template Library Example 11 with etl/visitor and etl/variant");
   Serial.print("running on ");
   Serial.println(board);
+  printVersionInfo();
+  Serial.print("C++ version is ");
+  Serial.println(__cplusplus);
   Serial.print("Using ETL Version "); Serial.println(ETL_VERSION);
   
   square_.accept(visitor);   // visitor's visit(Square) is called.

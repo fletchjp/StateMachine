@@ -22,6 +22,9 @@
 #include <tuple> // Needed for std::tie
 #include <Streaming.h>
 
+//#include <Arduino.h>
+//String board(ARDUINO_BOARD); Not defined for R4
+
 /////////////////////////////////////////////////////////////
 // StateMachine code here.
 /////////////////////////////////////////////////////////////
@@ -120,6 +123,8 @@ void setup() {
     Serial.println("\nArduino R4 Wifi");
 #endif
     //pinMode(LED,OUTPUT);
+//    Serial.print("running on ");
+//    Serial.println(board);
     printVersionInfo();
     Serial.print("C++ version is ");
     Serial.println(__cplusplus);
